@@ -21,7 +21,7 @@
 
 [PyCharm安装PyQt5及其工具（Qt Designer、PyUIC、PyRcc）详细教程 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/469526603)
 
-[[ PyQt入门教程 \] Qt Designer工具的使用 - 锅边糊 - 博客园 (cnblogs.com)](https://www.cnblogs.com/linyfeng/p/11223707.html)
+[ PyQt入门教程 Qt Designer工具的使用 - 锅边糊 - 博客园 (cnblogs.com)](https://www.cnblogs.com/linyfeng/p/11223707.html)
 
 3、在DBMS（如navicat）或MySQL中导入hotelManagement.sql，即可生成需要用的所有表，表内数据可自行修改，但是要注意参照完整性约束。
 
@@ -40,3 +40,7 @@
   以上使用pip安装即可
 
 ## 截图
+
+功能结构图：
+
+E-R图：
