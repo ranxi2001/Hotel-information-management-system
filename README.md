@@ -11,7 +11,7 @@
 
 [MySQL的详细安装教程 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/188416607)
 
-[pycharm连接MySQL数据库 - 晴天看恒星 - 博客园 (cnblogs.com)](https://www.cnblogs.com/korol7/p/12836290.html#:~:text=pycharm连接MySQL数据库 1 一、打开连接.打开View--> Tool Windows ...,2 二、点击database中的“%2B”%2C 选择Data Sour ... 3 三、填写远程连接MySQL数据库的参数)
+[pycharm连接MySQL数据库 - 晴天看恒星 - 博客园 (cnblogs.com)](https://www.cnblogs.com/korol7/p/12836290.html)
 
 到第18步就够了，不用配置环境变量
 
