@@ -41,6 +41,6 @@
 
 ## 截图
 
-功能结构图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/Functional structure diagram.png)
+功能结构图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/Functional_structure_diagram.png)
 
-E-R图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/E-R diagram.jpg)
+E-R图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/E-R_diagram.jpg)
