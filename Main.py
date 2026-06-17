@@ -19,7 +19,7 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.figure import Figure
 import datetime
 import os
-sys.path.append('D:\mysql\bin')
+import subprocess
 from PyQt5 import QtCore, QtGui, QtWidgets
 import time
 from ui.ModifyPwd import Ui_MpwdWindow
@@ -42,6 +42,10 @@ localConfig = {
     'charset': 'utf8',
     'cursorclass' : pymysql.cursors.DictCursor    # 数据库操纵指针
 }#数据库配置连接
+
+EXPORT_TABLES = ['booking_client', 'booking_team', 'checkin_client', 'checkin_team', 'client', 'hotelorder', 'room', 'staff', 'team']
+
+
 def _initStaff():
     global staff
     staff = Staff()
@@ -1344,52 +1348,104 @@ class ChartOp(QMainWindow, Ui_ReportWindow):
         self.stackedWidget_2.setCurrentIndex(0)
         self.gridlayout = QGridLayout(self.groupBox)  # 继承容器groupBox
         self.gridlayout2 = QGridLayout(self.groupBox_2) # 同上
-        # lineedit1 = self.path1
-        # lineedit2 = self.path2
-        # lineedit3 = self.path3
-        # self.scan.clicked.connect(lambda: self.setBrowerPath(lineedit1))
-        # self.scan_2.clicked.connect(lambda: self.setBrowerPath(lineedit2))
-        # self.scan_3.clicked.connect(lambda: self.setBrowerPath(lineedit3))
-        # self.tosql1.clicked.connect(self.toSQLDB)
-        # self.tosql2.clicked.connect(self.toSQLTable)
-        # self.toexcel.clicked.connect(self.toExcel)
-        # self.ask.clicked.connect(self.help)
+        lineedit1 = self.path1
+        lineedit2 = self.path2
+        lineedit3 = self.path3
+        self.scan.clicked.connect(lambda: self.setBrowerPath(lineedit1))
+        self.scan_2.clicked.connect(lambda: self.setBrowerPath(lineedit2))
+        self.scan_3.clicked.connect(lambda: self.setBrowerPath(lineedit3))
+        self.tosql1.clicked.connect(self.toSQLDB)
+        self.tosql2.clicked.connect(self.toSQLTable)
+        self.toexcel.clicked.connect(self.toExcel)
+        self.ask.clicked.connect(self.help)
         self.showfigure1.clicked.connect(self.figureOrder)
         self.showfigure2.clicked.connect(self.figureCS)
 
     def setBrowerPath(self,lineedit):
         download_path = QtWidgets.QFileDialog.getExistingDirectory(self,"选择导出目录",picture_dir())
-        lineedit.setText(download_path)
+        if download_path:
+            lineedit.setText(download_path)
+
+    def _validateExportPath(self, path):
+        if path == '':
+            QMessageBox().information(None, "提示", "必须选择导出目录！", QMessageBox.Yes)
+            return False
+        if not os.path.isdir(path):
+            QMessageBox().information(None, "提示", "导出目录不存在！", QMessageBox.Yes)
+            return False
+        return True
+
+    def _runMysqlDump(self, output_file, table_name=None):
+        config = localConfig
+        command = [
+            'mysqldump',
+            '-h', str(config['host']),
+            '-P', str(config['port']),
+            '-u', str(config['user']),
+            '--default-character-set=' + str(config['charset']),
+        ]
+        command.append(str(config['db']))
+        if table_name is not None:
+            command.append(table_name)
+
+        env = os.environ.copy()
+        if config['passwd'] != '':
+            env['MYSQL_PWD'] = str(config['passwd'])
+
+        try:
+            with open(output_file, 'w', encoding='utf-8') as fp:
+                result = subprocess.run(command, stdout=fp, stderr=subprocess.PIPE, text=True, env=env)
+        except FileNotFoundError:
+            QMessageBox().information(None, "提示", "未找到 mysqldump，请确认 MySQL bin 目录已加入 PATH。", QMessageBox.Yes)
+            return False
+        except Exception as e:
+            QMessageBox().information(None, "提示", "导出失败：%s" % e, QMessageBox.Yes)
+            return False
+
+        if result.returncode != 0:
+            QMessageBox().information(None, "提示", "导出失败：%s" % result.stderr.strip(), QMessageBox.Yes)
+            return False
+        return True
 
     def toSQLDB(self):
         """导出整个库"""
-        key = localConfig['passwd']
         path = self.path1.text()
-        os.system("mysqldump -uroot -p%s dbdesign > %s/dbdesign.sql" % (key,path))
-        QMessageBox().information(None, "提示", "导出数据库完成！", QMessageBox.Yes)
+        if not self._validateExportPath(path):
+            return False
+        output_file = os.path.join(path, "%s.sql" % localConfig['db'])
+        if self._runMysqlDump(output_file):
+            QMessageBox().information(None, "提示", "导出数据库完成：%s" % output_file, QMessageBox.Yes)
+            return True
+        return False
 
     def toSQLTable(self):
         """导出某个表"""
-        key = localConfig['passwd']
         path = self.path2.text()
         table_name = self.name1.currentText()
-        if table_name == '请选择...':
+        if table_name == '请选择...' or table_name not in EXPORT_TABLES:
             QMessageBox.information(None,'提示','必须选择一个表',QMessageBox.Yes)
             return False
-        os.system("mysqldump -uroot -p%s dbdesign %s > %s/%s.sql" %(key,table_name,path,table_name))
-        QMessageBox().information(None, "提示", "导出数据库表完成！", QMessageBox.Yes)
+        if not self._validateExportPath(path):
+            return False
+        output_file = os.path.join(path, "%s.sql" % table_name)
+        if self._runMysqlDump(output_file, table_name):
+            QMessageBox().information(None, "提示", "导出数据库表完成：%s" % output_file, QMessageBox.Yes)
+            return True
+        return False
 
     def toExcel(self):
         """导出某个表到excel"""
-        key = localConfig['passwd']
         c = Chart()
         path = self.path3.text()
         table_name = self.name2.currentText()
-        if table_name == '请选择...':
+        if table_name == '请选择...' or table_name not in EXPORT_TABLES:
             QMessageBox.information(None,'提示','必须选择一个表',QMessageBox.Yes)
             return False
+        if not self._validateExportPath(path):
+            return False
         c.toExcel(path,table_name)
-        QMessageBox().information(None, "提示", "导出表格完成！", QMessageBox.Yes)
+        QMessageBox().information(None, "提示", "导出表格完成：%s" % os.path.join(path, "%s.xls" % table_name), QMessageBox.Yes)
+        return True
 
     def help(self):
         QMessageBox().information(None, "提示", "client -- 客户表\nteam -- 团队表\nstaff -- 员工表\nroom -- 房间表"
