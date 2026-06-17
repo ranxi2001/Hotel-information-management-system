@@ -46,6 +46,25 @@ localConfig = {
 EXPORT_TABLES = ['booking_client', 'booking_team', 'checkin_client', 'checkin_team', 'client', 'hotelorder', 'room', 'staff', 'team']
 
 
+def set_window_meta(window, title, icon_name="酒店.png"):
+    window.setWindowTitle(title)
+    window.setWindowIcon(QtGui.QIcon(picture_path(icon_name)))
+
+
+def set_date_edit(date_edit, year, month, day):
+    date_edit.setDate(QtCore.QDate(year, month, day))
+
+
+def resolve_room_picture(path):
+    if path and os.path.exists(path):
+        return path
+    if path:
+        candidate = picture_path(os.path.basename(path))
+        if os.path.exists(candidate):
+            return candidate
+    return picture_path("room1.png")
+
+
 def _initStaff():
     global staff
     staff = Staff()
@@ -1335,6 +1354,7 @@ class ChartOp(QMainWindow, Ui_ReportWindow):
     def __init__(self,parent=None):
         super(ChartOp, self).__init__(parent)
         self.setupUi(self)
+        set_window_meta(self, "维护与报表", "chart.png")
         self.staff = get_staff()
         self.welcome.setText(self.staff.sname)
         self.role.setText('权限：'+ self.staff.srole)
@@ -1502,6 +1522,7 @@ class RoomOp(QMainWindow, Ui_RoomWindow):
     def __init__(self,parent=None):
         super(RoomOp, self).__init__(parent)
         self.setupUi(self)
+        set_window_meta(self, "客房管理", "hotel.png")
         self.staff = get_staff()
         self.welcome.setText(self.staff.sname)
         self.role.setText('权限：'+ self.staff.srole)
@@ -1517,6 +1538,8 @@ class RoomOp(QMainWindow, Ui_RoomWindow):
         self.tendtime_booking.setCalendarPopup(True)
         self.starttime_checkout.setCalendarPopup(True)
         self.endtime_checkout.setCalendarPopup(True)
+        self.setDefaultDates()
+        self.optimizeRoomInfoLayout()
         self.stackedWidget.setCurrentIndex(0)
         self.stackedWidget_sub.setCurrentIndex(0)
         self.stackedWidget_sub_2.setCurrentIndex(0)
@@ -1542,28 +1565,73 @@ class RoomOp(QMainWindow, Ui_RoomWindow):
         self.scan.clicked.connect(self.setBrowerPath)
         self.reset.clicked.connect(self.reOpen)
 
+    def setDefaultDates(self):
+        set_date_edit(self.inputStartTime, 2026, 1, 4)
+        set_date_edit(self.inputEndTime, 2026, 1, 7)
+        set_date_edit(self.endtime, 2026, 1, 7)
+        set_date_edit(self.tendtime, 2026, 1, 7)
+        set_date_edit(self.starttime_booking, 2026, 1, 6)
+        set_date_edit(self.endtime_booking, 2026, 1, 8)
+        set_date_edit(self.tstarttime_booking, 2026, 1, 10)
+        set_date_edit(self.tendtime_booking, 2026, 1, 15)
+        set_date_edit(self.starttime_checkout, 2026, 1, 4)
+        set_date_edit(self.endtime_checkout, 2026, 1, 7)
+
+    def optimizeRoomInfoLayout(self):
+        self.resize(1040, 720)
+        self.centralwidget.setMinimumSize(1040, 720)
+        self.frame.setGeometry(0, 0, 204, 211)
+        self.listWidget.setGeometry(0, 200, 204, 520)
+        self.stackedWidget.setGeometry(200, 0, 840, 720)
+        self.page.setMinimumSize(840, 720)
+        self.line.setGeometry(0, 250, 840, 16)
+        self.scrollArea.setGeometry(24, 272, 784, 420)
+        self.scrollArea.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.scrollArea.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.scrollAreaWidgetContents.setMinimumSize(760, 420)
+        self.gridLayoutWidget.setMinimumSize(760, 420)
+        self.reset.move(714, 220)
+
     # 下面用布局的方式显示房间
     def showRoom(self,rid,rtype,rstorey,rprice,rdesc,rpic,endtime,i,j):
         self.glayout = self.gridLayout
-        self.glayout.setContentsMargins(10,3,10,3)
-        # 下面展示信息
-        self.flayout = QVBoxLayout()
-        self.glayout.addLayout(self.flayout,i,j)
-        lb = QLabel(self)
-        lb.setFixedSize(150,80)
-        lb.setPixmap(QPixmap(rpic))
-        lb.setStyleSheet("border:1px solid white")
+        self.glayout.setContentsMargins(14, 14, 14, 14)
+        self.glayout.setHorizontalSpacing(22)
+        self.glayout.setVerticalSpacing(20)
+
+        card = QtWidgets.QWidget(self.gridLayoutWidget)
+        card.setFixedSize(220, 210)
+        card.setStyleSheet("QWidget{background:white;} QLabel{color:#990066;}")
+        flayout = QVBoxLayout(card)
+        flayout.setContentsMargins(10, 8, 10, 8)
+        flayout.setSpacing(5)
+
+        lb = QLabel(card)
+        lb.setFixedSize(100,100)
+        lb.setPixmap(QPixmap(resolve_room_picture(rpic)))
+        lb.setStyleSheet("border:1px solid #dddddd")
         lb.setScaledContents(True)
-        self.flayout.addWidget(lb)
-        self.flayout.addWidget(QLabel("房间号:"+rid + "    楼层:"+rstorey,self, styleSheet="color: #990066;"))
-        self.flayout.addWidget(QLabel("类型:"+rtype, self, styleSheet="color: #990066;", openExternalLinks=True))
-        self.flayout.addWidget(QLabel("描述:"+rdesc+" 价格:"+rprice, self, styleSheet="color: #990066;", openExternalLinks=True))
-        pb = QPushButton(self)
-        pb.setFixedSize(80,25)
+        flayout.addWidget(lb, 0, Qt.AlignHCenter)
+
+        info = [
+            "房间号:" + rid + "    楼层:" + rstorey,
+            "类型:" + rtype,
+            "描述:" + rdesc + "  价格:" + rprice,
+        ]
+        for text in info:
+            label = QLabel(text, card)
+            label.setFixedHeight(18)
+            label.setWordWrap(False)
+            label.setStyleSheet("color:#990066; font-size:12px;")
+            flayout.addWidget(label)
+
+        pb = QPushButton(card)
+        pb.setFixedSize(88,25)
         pb.setText("立即订购")
-        pb.setStyleSheet("background:#CCFFCC;border-radius:8px;\n")
-        self.flayout.addWidget(pb)
+        pb.setStyleSheet("background:#CCFFCC;border-radius:6px;")
+        flayout.addWidget(pb, 0, Qt.AlignHCenter)
         pb.clicked.connect(lambda: self.pbSwitch(rid,endtime))
+        self.glayout.addWidget(card, i, j)
 
     def reOpen(self):
         self.close()
@@ -1607,6 +1675,10 @@ class RoomOp(QMainWindow, Ui_RoomWindow):
                 print(k)
                 self.showRoom(da[k]['rid'],da[k]['rtype'],da[k]['rstorey'],da[k]['rprice'],da[k]['rdesc'],da[k]['rpic'],rendtime,i,j)
                 k = k + 1
+        rows = (length + 2) // 3
+        content_height = max(420, rows * 230 + 24)
+        self.gridLayoutWidget.setMinimumSize(760, content_height)
+        self.scrollAreaWidgetContents.setMinimumSize(760, content_height)
         return True
 
 
@@ -1817,6 +1889,7 @@ class StaffOP(QMainWindow, Ui_StaffWindow):
     def __init__(self, parent=None):
         super(StaffOP, self).__init__(parent)
         self.setupUi(self)
+        set_window_meta(self, "员工管理", "staff.png")
         self.inputdate.setCalendarPopup(True)
         self.stackedWidget.setCurrentIndex(0)
         self.staff = get_staff()
@@ -1941,6 +2014,7 @@ class mpWindow(QMainWindow, Ui_MpwdWindow):
     def __init__(self, parent=None):
         super(mpWindow, self).__init__(parent)
         self.setupUi(self)
+        set_window_meta(self, "修改密码", "院徽.png")
         # self.retLogin.clicked.connect(self.returnToMain)
         self.commitButton.clicked.connect(self.commit)
 

@@ -50,3 +50,15 @@ mysql -u root -p dbdesign < hotelManagement.sql
 功能结构图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/Functional_structure_diagram.png)
 
 E-R图：![image](https://github.com/ranxi169/Hotel-information-management-system/blob/main/references/E-R_diagram.jpg)
+
+客房管理界面：![客房管理界面](references/room-management-v1.5.png)
+
+## 更新记录
+
+### v1.5 2026年更新古法系统+问题修复
+
+* 默认演示数据更新到2026年，避免导入后数据过旧。
+* 修复客房、员工、报表等窗口默认标题和图标显示问题。
+* 修复客房管理默认日期无法直接筛选房源的问题。
+* 修复房源图片路径依赖本机绝对路径导致图片不显示的问题。
+* 优化客房管理房源卡片布局、图片比例和滚动区域显示。
