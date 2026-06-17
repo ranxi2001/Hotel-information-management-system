@@ -8,6 +8,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from .resource_path import picture_path
 
 
 class Ui_StaffWindow(object):
@@ -121,7 +122,7 @@ class Ui_StaffWindow(object):
         self.head_2.setGeometry(QtCore.QRect(260, 30, 121, 121))
         self.head_2.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../../pictures/staff3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(picture_path("staff3.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.head_2.setIcon(icon)
         self.head_2.setIconSize(QtCore.QSize(100, 100))
         self.head_2.setObjectName("head_2")
@@ -341,7 +342,7 @@ class Ui_StaffWindow(object):
 "border-radius:5px")
         self.searchNB.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../../../../pictures/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(picture_path("search.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.searchNB.setIcon(icon1)
         self.searchNB.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.searchNB.setObjectName("searchNB")
@@ -396,7 +397,7 @@ class Ui_StaffWindow(object):
         self.toolButton_2.setFont(font)
         self.toolButton_2.setStyleSheet("border:none")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../../../../pictures/search1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(picture_path("search1.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_2.setIcon(icon2)
         self.toolButton_2.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButton_2.setObjectName("toolButton_2")
@@ -484,7 +485,7 @@ class Ui_StaffWindow(object):
         self.toolButton_3.setStyleSheet("border:none\n"
 "")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../../../../pictures/insert.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(picture_path("insert.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_3.setIcon(icon3)
         self.toolButton_3.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButton_3.setObjectName("toolButton_3")
@@ -529,7 +530,7 @@ class Ui_StaffWindow(object):
         self.toolButton_4.setStyleSheet("border:none\n"
 "")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../../../../pictures/delete.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(picture_path("delete.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_4.setIcon(icon4)
         self.toolButton_4.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButton_4.setObjectName("toolButton_4")
@@ -609,7 +610,7 @@ class Ui_StaffWindow(object):
         font.setWeight(75)
         item.setFont(font)
         icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap("../../../../../pictures/staff5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon5.addPixmap(QtGui.QPixmap(picture_path("staff5.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon5)
         self.listWidget.addItem(item)
         item = QtWidgets.QListWidgetItem()
@@ -620,7 +621,7 @@ class Ui_StaffWindow(object):
         font.setWeight(75)
         item.setFont(font)
         icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap("../../../../../pictures/staff2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon6.addPixmap(QtGui.QPixmap(picture_path("staff2.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon6)
         self.listWidget.addItem(item)
         item = QtWidgets.QListWidgetItem()
@@ -631,7 +632,7 @@ class Ui_StaffWindow(object):
         font.setWeight(75)
         item.setFont(font)
         icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap("../../../../../pictures/staff4.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon7.addPixmap(QtGui.QPixmap(picture_path("staff4.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon7)
         self.listWidget.addItem(item)
         item = QtWidgets.QListWidgetItem()

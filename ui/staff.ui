@@ -154,7 +154,7 @@ background-color:#CCFFCC</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../pictures/staff3.png</normaloff>../../../../../pictures/staff3.png</iconset>
+        <normaloff>../pictures/staff3.png</normaloff>../pictures/staff3.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -762,7 +762,7 @@ border-radius:5px</string>
        </property>
        <property name="icon">
         <iconset>
-         <normaloff>../../../../../pictures/search.png</normaloff>../../../../../pictures/search.png</iconset>
+         <normaloff>../pictures/search.png</normaloff>../pictures/search.png</iconset>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -910,7 +910,7 @@ background-color:#CCFFCC</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../pictures/search1.png</normaloff>../../../../../pictures/search1.png</iconset>
+        <normaloff>../pictures/search1.png</normaloff>../pictures/search1.png</iconset>
       </property>
       <property name="toolButtonStyle">
        <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1213,7 +1213,7 @@ background-color:#CCFFCC</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../pictures/insert.png</normaloff>../../../../../pictures/insert.png</iconset>
+        <normaloff>../pictures/insert.png</normaloff>../pictures/insert.png</iconset>
       </property>
       <property name="toolButtonStyle">
        <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1335,7 +1335,7 @@ background-color:#CCFFCC</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>../../../../../pictures/delete.png</normaloff>../../../../../pictures/delete.png</iconset>
+        <normaloff>../pictures/delete.png</normaloff>../pictures/delete.png</iconset>
       </property>
       <property name="toolButtonStyle">
        <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1556,7 +1556,7 @@ background:#CCFF99
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff5.png</normaloff>../../../../../pictures/staff5.png</iconset>
+       <normaloff>../pictures/staff5.png</normaloff>../pictures/staff5.png</iconset>
      </property>
     </item>
     <item>
@@ -1573,7 +1573,7 @@ background:#CCFF99
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff2.png</normaloff>../../../../../pictures/staff2.png</iconset>
+       <normaloff>../pictures/staff2.png</normaloff>../pictures/staff2.png</iconset>
      </property>
     </item>
     <item>
@@ -1590,7 +1590,7 @@ background:#CCFF99
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff4.png</normaloff>../../../../../pictures/staff4.png</iconset>
+       <normaloff>../pictures/staff4.png</normaloff>../pictures/staff4.png</iconset>
      </property>
     </item>
     <item>
@@ -1607,7 +1607,7 @@ background:#CCFF99
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff5.png</normaloff>../../../../../pictures/staff5.png</iconset>
+       <normaloff>../pictures/staff5.png</normaloff>../pictures/staff5.png</iconset>
      </property>
     </item>
    </widget>
@@ -1640,7 +1640,7 @@ background:#CCFF99
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff3.png</normaloff>../../../../../pictures/staff3.png</iconset>
+       <normaloff>../pictures/staff3.png</normaloff>../pictures/staff3.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -2167,7 +2167,7 @@ border-radius:5px</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/search.png</normaloff>../../../../../pictures/search.png</iconset>
+       <normaloff>../pictures/search.png</normaloff>../pictures/search.png</iconset>
      </property>
      <property name="iconSize">
       <size>

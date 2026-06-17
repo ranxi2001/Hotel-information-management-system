@@ -28,6 +28,7 @@ from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow,QMessageBox,QTableWidgetItem,QVBoxLayout, QLabel,QPushButton
 from ui.staff import Ui_StaffWindow
 from ui.room import Ui_RoomWindow
+from ui.resource_path import picture_dir, picture_path
 # from dao.dbOpRoom import Room
 import datetime
 
@@ -170,15 +171,12 @@ class Staff:
             print(e)
             return False
 
-    def modifyStaff(self, row, column, value):
+    def modifyStaff(self, sid, column, value):
 
         SQL_COLUMN = ['sid','sname','ssex','stime','susername','spassword','srole','sidcard','sphone']
         try:
-            self.cursor.execute("select * from staff")
-            data = self.cursor.fetchall()
-            rid_selected = data[row]['rid']
-            sql = "update room set " + SQL_COLUMN[column] + "='" + value + "'where rid='" + rid_selected +"'"
-            self.cursor.execute(sql)
+            sql = "update staff set " + SQL_COLUMN[column] + "=%s where sid=%s"
+            self.cursor.execute(sql, (value, sid))
             self.db.commit()
             return True
         except Exception as e:
@@ -730,7 +728,7 @@ class Ui_LoginWindow(object):
         font.setPointSize(-1)
         MainWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../../../../../pictures/酒店.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(picture_path("酒店.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("\n"
 "*{\n"
@@ -742,7 +740,7 @@ class Ui_LoginWindow(object):
 "border-radius:15px;\n"
 "}\n"
 "#centralwidget{\n"
-"border-image:url(D:/pictures/login4.jpg) strectch；\n"
+"border-image:url(" + picture_path("login4.jpg") + ") strectch；\n"
 "}\n"
 "\n"
 "#toolButton{\n"
@@ -889,7 +887,7 @@ class Ui_LoginWindow(object):
         self.toolButton.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.toolButton.setText("")
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../../../../../pictures/院徽.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(picture_path("院徽.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton.setIcon(icon1)
         self.toolButton.setIconSize(QtCore.QSize(150, 150))
         self.toolButton.setObjectName("toolButton")
@@ -993,7 +991,7 @@ class Ui_HomeWindow(object):
         MainWindow.resize(800, 600)
         MainWindow.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../../pictures/酒店.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(picture_path("酒店.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         MainWindow.setStyleSheet("QMainWindow{\n"
 "border-radius:15px\n"
@@ -1034,7 +1032,7 @@ class Ui_HomeWindow(object):
         font.setWeight(75)
         self.chartbutton.setFont(font)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../../../pictures/chart.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(picture_path("chart.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.chartbutton.setIcon(icon1)
         self.chartbutton.setIconSize(QtCore.QSize(70, 70))
         self.chartbutton.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
@@ -1047,7 +1045,7 @@ class Ui_HomeWindow(object):
         font.setWeight(75)
         self.roombutton.setFont(font)
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../../../pictures/coffee.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(picture_path("coffee.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.roombutton.setIcon(icon2)
         self.roombutton.setIconSize(QtCore.QSize(80, 80))
         self.roombutton.setPopupMode(QtWidgets.QToolButton.InstantPopup)
@@ -1061,7 +1059,7 @@ class Ui_HomeWindow(object):
         font.setWeight(75)
         self.staffbutton.setFont(font)
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("../../../../pictures/staff.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(picture_path("staff.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.staffbutton.setIcon(icon3)
         self.staffbutton.setIconSize(QtCore.QSize(80, 80))
         self.staffbutton.setToolButtonStyle(QtCore.Qt.ToolButtonTextUnderIcon)
@@ -1087,7 +1085,7 @@ class Ui_HomeWindow(object):
         self.toolButton_7.setFont(font)
         self.toolButton_7.setText("")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("../../../../pictures/hotel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(picture_path("hotel.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_7.setIcon(icon4)
         self.toolButton_7.setIconSize(QtCore.QSize(100, 100))
         self.toolButton_7.setObjectName("toolButton_7")
@@ -1360,7 +1358,7 @@ class ChartOp(QMainWindow, Ui_ReportWindow):
         self.showfigure2.clicked.connect(self.figureCS)
 
     def setBrowerPath(self,lineedit):
-        download_path = QtWidgets.QFileDialog.getExistingDirectory(self,"选择导出目录","D:\pictures")
+        download_path = QtWidgets.QFileDialog.getExistingDirectory(self,"选择导出目录",picture_dir())
         lineedit.setText(download_path)
 
     def toSQLDB(self):
@@ -1757,7 +1755,7 @@ class RoomOp(QMainWindow, Ui_RoomWindow):
             QMessageBox().information(None, "提示", "权限不符合要求！", QMessageBox.Yes)
 
     def setBrowerPath(self):
-        download_path = QtWidgets.QFileDialog.getExistingDirectory(self,"选择图片路径","D:\pictures")
+        download_path = QtWidgets.QFileDialog.getExistingDirectory(self,"选择图片路径",picture_dir())
         self.path.setText(download_path)
 class StaffOP(QMainWindow, Ui_StaffWindow):
     def __init__(self, parent=None):
@@ -1874,8 +1872,12 @@ class StaffOP(QMainWindow, Ui_StaffWindow):
             return
         row = row_selected[0].row()
         column  = row_selected[0].column()
+        sid = self.searchTable.item(row, 0).text()
         value = self.modifyvalue.text()
-        self.staff.modifyStaff(row,column,value)
+        ret = self.staff.modifyStaff(sid,column,value)
+        if ret == False:
+            QMessageBox().information(None, "提示", "修改失败！", QMessageBox.Yes)
+            return
         tvalue = QTableWidgetItem(('%s') % (value))
         self.searchTable.setItem(row,column, tvalue)
         QMessageBox().information(None, "提示", "修改成功！", QMessageBox.Yes)

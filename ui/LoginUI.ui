@@ -21,7 +21,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../pictures/酒店.png</normaloff>../../../../../../pictures/酒店.png</iconset>
+    <normaloff>../pictures/酒店.png</normaloff>../pictures/酒店.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">
@@ -34,7 +34,7 @@ background:rgba(0,0,0,0.8);
 border-radius:15px;
 }
 #centralwidget{
-border-image:url(D:/pictures/login4.jpg) strectch；
+border-image:url(../pictures/login4.jpg) strectch；
 }
 
 #toolButton{
@@ -416,7 +416,7 @@ startBtn.setStyleSheet(&quot;background-color:green&quot;); </string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../../pictures/院徽.png</normaloff>../../../../../../pictures/院徽.png</iconset>
+      <normaloff>../pictures/院徽.png</normaloff>../pictures/院徽.png</iconset>
     </property>
     <property name="iconSize">
      <size>

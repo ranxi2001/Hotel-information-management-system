@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from .resource_path import picture_path
 
 
 class Ui_ReportWindow(object):
@@ -120,7 +121,7 @@ class Ui_ReportWindow(object):
         font.setWeight(75)
         item.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../../pictures/customer2.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(picture_path("customer2.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon)
         self.listWidget.addItem(item)
         item = QtWidgets.QListWidgetItem()
@@ -131,7 +132,7 @@ class Ui_ReportWindow(object):
         font.setWeight(75)
         item.setFont(font)
         icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap("../../../../../pictures/customer1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon1.addPixmap(QtGui.QPixmap(picture_path("customer1.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         item.setIcon(icon1)
         self.listWidget.addItem(item)
         self.frame = QtWidgets.QFrame(self.centralwidget)
@@ -143,7 +144,7 @@ class Ui_ReportWindow(object):
         self.head.setGeometry(QtCore.QRect(60, 20, 60, 60))
         self.head.setText("")
         icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap("../../../../../pictures/staff3.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon2.addPixmap(QtGui.QPixmap(picture_path("staff3.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.head.setIcon(icon2)
         self.head.setIconSize(QtCore.QSize(60, 60))
         self.head.setObjectName("head")
@@ -311,7 +312,7 @@ class Ui_ReportWindow(object):
 "border-radius:5px")
         self.toolButton.setText("")
         icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap("C:/pictures/search.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon3.addPixmap(QtGui.QPixmap(picture_path("search.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton.setIcon(icon3)
         self.toolButton.setIconSize(QtCore.QSize(15, 15))
         self.toolButton.setObjectName("toolButton")
@@ -624,7 +625,7 @@ class Ui_ReportWindow(object):
         self.toolButton_2.setFont(font)
         self.toolButton_2.setStyleSheet("border:none")
         icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap("C:/pictures/search1.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon4.addPixmap(QtGui.QPixmap(picture_path("search1.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton_2.setIcon(icon4)
         self.toolButton_2.setToolButtonStyle(QtCore.Qt.ToolButtonTextBesideIcon)
         self.toolButton_2.setObjectName("toolButton_2")

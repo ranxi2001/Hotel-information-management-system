@@ -24,7 +24,7 @@ background:rgba(0,0,0,0.8);
 border-radius:15px;
 }
 #centralwidget{
-border-image:url(D:/pictures/login4.jpg) strectch；
+border-image:url(../pictures/login4.jpg) strectch；
 }
 
 QToolButton{
@@ -246,7 +246,7 @@ border-bottom:1px solid #717072;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../../pictures/酒店.png</normaloff>../../../../../../pictures/酒店.png</iconset>
+      <normaloff>../pictures/酒店.png</normaloff>../pictures/酒店.png</iconset>
     </property>
     <property name="iconSize">
      <size>

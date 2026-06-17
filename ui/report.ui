@@ -131,7 +131,7 @@ border:1px solid black
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/customer2.png</normaloff>../../../../../pictures/customer2.png</iconset>
+       <normaloff>../pictures/customer2.png</normaloff>../pictures/customer2.png</iconset>
      </property>
     </item>
     <item>
@@ -148,7 +148,7 @@ border:1px solid black
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/customer1.png</normaloff>../../../../../pictures/customer1.png</iconset>
+       <normaloff>../pictures/customer1.png</normaloff>../pictures/customer1.png</iconset>
      </property>
     </item>
    </widget>
@@ -181,7 +181,7 @@ border:1px solid black
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/staff3.png</normaloff>../../../../../pictures/staff3.png</iconset>
+       <normaloff>../pictures/staff3.png</normaloff>../pictures/staff3.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -681,7 +681,7 @@ border-radius:5px</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>C:/pictures/search.png</normaloff>C:/pictures/search.png</iconset>
+       <normaloff>../pictures/search.png</normaloff>../pictures/search.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1616,7 +1616,7 @@ border-radius:5px</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>C:/pictures/search1.png</normaloff>C:/pictures/search1.png</iconset>
+        <normaloff>../pictures/search1.png</normaloff>../pictures/search1.png</iconset>
       </property>
       <property name="toolButtonStyle">
        <enum>Qt::ToolButtonTextBesideIcon</enum>
@@ -1675,7 +1675,7 @@ border-radius:5px</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>C:/pictures/search1.png</normaloff>C:/pictures/search1.png</iconset>
+        <normaloff>../pictures/search1.png</normaloff>../pictures/search1.png</iconset>
       </property>
       <property name="toolButtonStyle">
        <enum>Qt::ToolButtonTextBesideIcon</enum>

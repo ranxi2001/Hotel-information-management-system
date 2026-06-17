@@ -23,11 +23,17 @@
 
 [ PyQt入门教程 Qt Designer工具的使用 - 锅边糊 - 博客园 (cnblogs.com)](https://www.cnblogs.com/linyfeng/p/11223707.html)
 
-3、在DBMS（如navicat）或MySQL中导入hotelManagement.sql，即可生成需要用的所有表，表内数据可自行修改，但是要注意参照完整性约束。
+3、在DBMS（如Navicat）或MySQL中导入`hotelManagement.sql`，即可生成需要用的所有表。导入前请先创建数据库，数据库名需要与`Main.py`中`localConfig['db']`保持一致，默认是`dbdesign`。MySQL命令行导入示例：
 
-4、main.py中dbConfig这个变量中修改有关数据库配置（账号密码等）
+```bash
+mysql -u root -p dbdesign < hotelManagement.sql
+```
 
-5、将文档内/pictures文件夹移动至D:，这是因为前端Qt StyleSheet中许多图片采用的绝对地址--D:/pictures/xxx
+表内数据可自行修改，但是要注意外键等参照完整性约束。
+
+4、在`Main.py`中修改`localConfig`变量里的数据库连接配置，包括`host`、`port`、`user`、`passwd`、`db`等。
+
+5、将`pictures`文件夹放在项目根目录下。代码会自动按项目路径读取图片，例如`pictures/login4.jpg`、`pictures/search.png`等，不再需要移动到`C:`或`D:`盘。
 
 6、运行Main.py即可
 

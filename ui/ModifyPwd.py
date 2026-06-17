@@ -9,6 +9,7 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from .resource_path import picture_path
 
 
 class Ui_MpwdWindow(object):
@@ -25,7 +26,7 @@ class Ui_MpwdWindow(object):
 "border-radius:15px;\n"
 "}\n"
 "#centralwidget{\n"
-"border-image:url(D:/pictures/login4.jpg) strectch；\n"
+"border-image:url(" + picture_path("login4.jpg") + ") strectch；\n"
 "}\n"
 "\n"
 "QToolButton{\n"
@@ -116,7 +117,7 @@ class Ui_MpwdWindow(object):
         self.toolButton.setLocale(QtCore.QLocale(QtCore.QLocale.Chinese, QtCore.QLocale.China))
         self.toolButton.setText("")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("../../../../../../pictures/院徽.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap(picture_path("院徽.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.toolButton.setIcon(icon)
         self.toolButton.setIconSize(QtCore.QSize(150, 150))
         self.toolButton.setObjectName("toolButton")

@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../../../../../../pictures/酒店.png</normaloff>../../../../../../pictures/酒店.png</iconset>
+    <normaloff>../pictures/酒店.png</normaloff>../pictures/酒店.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
@@ -80,7 +80,7 @@ background:#e1e9ed;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../pictures/chart.png</normaloff>../../../../../pictures/chart.png</iconset>
+      <normaloff>../pictures/chart.png</normaloff>../pictures/chart.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -113,7 +113,7 @@ background:#e1e9ed;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../pictures/coffee.png</normaloff>../../../../../pictures/coffee.png</iconset>
+      <normaloff>../pictures/coffee.png</normaloff>../pictures/coffee.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -149,7 +149,7 @@ background:#e1e9ed;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../../../../../pictures/staff.png</normaloff>../../../../../pictures/staff.png</iconset>
+      <normaloff>../pictures/staff.png</normaloff>../pictures/staff.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -217,7 +217,7 @@ background:#e1e9ed;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>../../../../../pictures/hotel.png</normaloff>../../../../../pictures/hotel.png</iconset>
+       <normaloff>../pictures/hotel.png</normaloff>../pictures/hotel.png</iconset>
      </property>
      <property name="iconSize">
       <size>
